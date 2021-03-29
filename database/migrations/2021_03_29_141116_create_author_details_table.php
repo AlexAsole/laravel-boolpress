@@ -16,6 +16,7 @@ class CreateAuthorDetailsTable extends Migration
         Schema::create('author_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('author_id');
+            $table->text('bio');
             $table->string('website', 2048);
             $table->string('image', 2048);
             $table->timestamps();
