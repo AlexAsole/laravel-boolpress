@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    //
     public function author()
     {
         return $this->belongsTo('App\Author');
@@ -15,4 +17,11 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
+    protected $fillable = ['title', 'author_id', 'body',];
 }

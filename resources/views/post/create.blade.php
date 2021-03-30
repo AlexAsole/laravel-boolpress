@@ -1,15 +1,15 @@
 @extends('template.base')
 @section('content')
-    <form action="{{ route('posts.store') }}" methods='POST'>
+    <form action="{{ route('posts.store') }}" method='POST'>
         @csrf
         @method('POST')
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="Title" placeholder="Title">
+            <input type="text" class="form-control" name="title" placeholder="Title">
         </div>
         <div class="form-group">
-            <label for="author">Author</label>
-            <select class="form-control" name="author" placeholder="Author">
+            <label for="author_id">Author</label>
+            <select class="form-control" name="author_id" placeholder="Author">
                 @foreach ($authors as $author)
                     <option value="{{ $author->id }}">{{ $author->name }} {{ $author->surname }}</option>
                 @endforeach
@@ -18,6 +18,14 @@
         <div class="form-group">
             <label for="body">Body</label>
             <textarea class="form-control" rows="3" name="body" placeholder="Body"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tags[]">Tags</label>
+            <select multiple class="form-control" name="tags[]">
+                @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">
             Create!

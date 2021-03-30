@@ -37,7 +37,7 @@ class PostSeeder extends Seeder
 
                 for ($y = 0; $y < rand(1, 3); $y++) {
                     $comment = new Comment();
-                    $comment->body = $faker->text(rand(24, 144));
+                    $comment->content = $faker->text(rand(24, 144));
                     $post->comments()->save($comment);
                 }
             }

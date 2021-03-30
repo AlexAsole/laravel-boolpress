@@ -8,7 +8,7 @@
                 <th scope="col">Author ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
-                <th scope="col">First Comment</th>
+                <th scope="col">Tags</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +18,11 @@
                     <td>{{ $post->author_id }}</th>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->body }}</td>
-                    <td>{{ $post->comments->first()->body }}</td>
+                    <td>
+                        @foreach ($post->tags as $tag)
+                            {{ $tag->name }}
+                        @endforeach
+                    </td>
                 </tr>
             @endforeach
         </tbody>

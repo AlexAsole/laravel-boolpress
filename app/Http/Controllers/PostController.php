@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Author;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -27,7 +28,8 @@ class PostController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('post.create', compact('authors'));
+        $tags = Tag::all();
+        return view('post.create', compact('authors', 'tags'));
     }
 
     /**
@@ -38,7 +40,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $data = $request->all();
+        $author_id = $data['author_id'];
+        if (!Author::find($author_id)) {
+            dd($request);
+        }
+        $post = new Post();
+        $post->fill($data);
+        $post->save();
+
+        $post->tags()->attach($data['tags']);
+
+        return redirect()->route('posts.index');
     }
 
     /**
