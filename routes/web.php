@@ -21,4 +21,3 @@ Route::get('/', function () {
 
 Route::get('authors', 'AuthorController@index');
 Route::resource('posts', 'PostController');
-Route::resource('comments', 'CommentController');
