@@ -25,7 +25,7 @@
                             {{ $tag->name }}
                         @endforeach
                     </td>
-                    <td><img src="{{ asset($post->images) }}" alt=""></td>
+                    <td><img style="width:200px" src="{{ $post->image }}" alt=""></td>
                 </tr>
             @endforeach
         </tbody>

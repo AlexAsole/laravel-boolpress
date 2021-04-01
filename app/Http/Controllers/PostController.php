@@ -42,8 +42,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // $path = $request->file('image')->store('images');
-        dd($request);
+        $path = $request->file('image')->store('images');
         $data = $request->all();
         $author_id = $data['author_id'];
         if (!Author::find($author_id)) {

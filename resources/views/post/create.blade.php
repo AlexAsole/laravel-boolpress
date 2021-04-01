@@ -1,6 +1,6 @@
 @extends('template.base')
 @section('content')
-    <form action="{{ route('posts.store') }}" method='POST'  enctype="multipart\form-data">
+    <form action="{{ route('posts.store') }}" method='POST'  enctype="multipart/form-data">
         @csrf
         @method('POST')
         <div class="form-group">
