@@ -1,6 +1,7 @@
 @extends('template.base')
 
 @section('content')
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -9,6 +10,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Tags</th>
+                <th scope="col">Image</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +25,7 @@
                             {{ $tag->name }}
                         @endforeach
                     </td>
+                    <td><img src="{{ asset($post->images) }}" alt=""></td>
                 </tr>
             @endforeach
         </tbody>

@@ -42,6 +42,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // $path = $request->file('image')->store('images');
+        dd($request);
         $data = $request->all();
         $author_id = $data['author_id'];
         if (!Author::find($author_id)) {
@@ -49,10 +51,10 @@ class PostController extends Controller
         }
         $post = new Post();
         $post->fill($data);
+        $post->image = $path;
         $post->save();
 
         $post->tags()->attach($data['tags']);
-        // $lastPost = Post::orderBy('id', 'asc')->latest();
 
         $toMail = new SendPost($post);
 
