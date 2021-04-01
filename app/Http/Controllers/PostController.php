@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Author;
 use App\Tag;
+use App\Mail\SendPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -50,6 +52,11 @@ class PostController extends Controller
         $post->save();
 
         $post->tags()->attach($data['tags']);
+        // $lastPost = Post::orderBy('id', 'asc')->latest();
+
+        $toMail = new SendPost($post);
+
+        Mail::to('ginopippo@freebooter.com')->send($toMail);
 
         return redirect()->route('posts.index');
     }
